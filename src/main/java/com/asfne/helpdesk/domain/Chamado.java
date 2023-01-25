@@ -1,10 +1,14 @@
 package com.asfne.helpdesk.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @SuppressWarnings("serial")
 @Entity
@@ -17,6 +21,9 @@ public class Chamado extends AbstractEntity<Long> {
 	@ManyToOne
 	@JoinColumn(name = "id_funcionario_fk")
 	private Funcionario funcionario;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate dataAberturaChamado;
 	
 	public String getTitulo() {
 		return titulo;
@@ -32,6 +39,14 @@ public class Chamado extends AbstractEntity<Long> {
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+
+	public LocalDate getDataAberturaChamado() {
+		return dataAberturaChamado;
+	}
+
+	public void setDataAberturaChamado(LocalDate dataAberturaChamado) {
+		this.dataAberturaChamado = dataAberturaChamado;
 	}
 	
 	

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<title>ASFNE Helpdesk</title>
@@ -19,30 +19,26 @@
 	<link href="/css/style.css" rel="stylesheet" />
 </head>
 <body>
-
 	<header th:replace="fragments/header :: cabecalho">
 		<div>header</div>
 	</header>
-
-	<div class="layout-main">
+	
+	<div  class="layout-main">
 		<aside>
 			<nav th:replace="fragments/sidebar :: nav-sidebar">
-				<span>Menu</span>
+				<span>menu</span>
 			</nav>
 		</aside>
 		
 		<section layout:fragment="corpo">
-			<div>
-			conteudo das paginas
-			</div>
+			<div>conteudo principal das páginas</div>
 		</section>
-		
 	</div>
-
+	
 	<footer th:replace="fragments/footer :: rodape">
-		<div>Footer</div>
+		<div>footer</div>
 	</footer>
-
+	
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
