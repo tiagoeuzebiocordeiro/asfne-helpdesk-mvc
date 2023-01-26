@@ -26,12 +26,20 @@
 	        </div>
 	
 	        <div class="container" id="cadastro">
-	            <form action="/funcionarios/salvar" method="POST">
+	        
+	        <div th:if="${mensagem}">
+		     <div class="alert alert-success" role="alert" th:if="${mensagem}">
+		     	<i class="oi oi-check"></i>
+		   		<span th:text="${mensagem}"></span>
+		     </div>
+	     </div> 
+	        
+	            <form th:action="@{/funcionarios/salvar}" th:object="${funcionario}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="nome">Nome do Funcionário</label>
 	                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
-	                               autofocus="autofocus" name="nome" value=""/>
+	                               autofocus="autofocus" th:field="*{nome}"/>
 	                        <div class="invalid-feedback">
 	
 	                        </div>
@@ -41,13 +49,11 @@
 	               
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
-	                        <label for="cargo">Setor</label>
-	                        <select id="cargo" class="form-control" name="cargo">
+	                        <label for="setor">Setor do funcionário</label>
+	                        <select id="setor" class="form-control" th:field="*{setor}">
 	                            <option value="">Selecione...</option>
-	                            <option value="1">RH</option>
-	                            <option value="2">T.I</option>
-	                            <option value="3">Comercial</option>
-	                            <option value="4">Produção</option>
+	                            <option th:each="s : ${setores}" th:value="${s.id}" th:text="${s.nome}">RH</option>
+	                            
 	                        </select>
 	                        <div class="invalid-feedback">
 	

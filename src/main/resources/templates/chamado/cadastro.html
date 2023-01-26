@@ -23,6 +23,16 @@
 	            </a>
 	        </nav>
 	
+	<!--  Alert -->
+	
+		<div th:if="${mensagem}">
+		     <div class="alert alert-success" role="alert" th:if="${mensagem}">
+		     	<i class="oi oi-check"></i>
+		   		<span th:text="${mensagem}"></span>
+		     </div>
+	     </div> 
+	<!--  fim alert -->
+	
 	        <div class="container" id="cadastro">
 	            <form th:action="@{/chamados/salvar}" th:object="${chamado}" method="POST">
 	                <div class="form-row">
