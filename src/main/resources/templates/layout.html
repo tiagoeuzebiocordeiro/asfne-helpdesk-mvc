@@ -2,6 +2,7 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
 <head>
 	<title>ASFNE Helpdesk</title>
 	<meta charset="UTF-8" />
@@ -43,10 +44,10 @@
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
 	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
+	
 	    
 	   var url = '';
 		
@@ -63,6 +64,19 @@
 		});
 		
 		$(document).ready(function(){
+		
+		setTimeout(function() {
+			$(".alert").fadeOut("slow", function() {
+			
+				$(this).alert('close');
+			
+			});
+				
+			
+		}, 5000);
+		
+	
+		
 		    $(".navbar-toggle").click(function(){
 		        $(".sidebar").toggleClass("sidebar-open");
 		    })

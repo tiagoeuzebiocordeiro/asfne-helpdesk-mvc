@@ -16,9 +16,9 @@ public class Funcionario extends AbstractEntity<Long> {
 	private String nome;
 	
 	@OneToOne
-	private Setor setor;
+	private Setor setor; // OK
 	
-	@OneToMany(mappedBy = "funcionario")
+	@OneToMany
 	private List<Chamado> chamados = new ArrayList<>();
 
 	public String getNome() {
@@ -29,13 +29,6 @@ public class Funcionario extends AbstractEntity<Long> {
 		this.nome = nome;
 	}
 
-	public Setor getSetor() {
-		return setor;
-	}
-
-	public void setSetor(Setor setor) {
-		this.setor = setor;
-	}
 
 	public List<Chamado> getChamados() {
 		return chamados;
@@ -43,6 +36,14 @@ public class Funcionario extends AbstractEntity<Long> {
 
 	public void setChamados(List<Chamado> chamados) {
 		this.chamados = chamados;
+	}
+
+	public Setor getSetor() {
+		return setor;
+	}
+
+	public void setSetor(Setor setor) {
+		this.setor = setor;
 	}
 	
 }

@@ -6,9 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+
+
+//import com.fasterxml.jackson.annotation.JsonFormat;
 
 @SuppressWarnings("serial")
 @Entity
@@ -18,12 +23,16 @@ public class Chamado extends AbstractEntity<Long> {
 	@Column(name = "titulo", nullable = false, unique = true, length = 60)
 	private String titulo;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "id_funcionario_fk")
 	private Funcionario funcionario;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataAberturaChamado;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_setor_fk")
+	private Setor setor;
 	
 	public String getTitulo() {
 		return titulo;
@@ -47,6 +56,14 @@ public class Chamado extends AbstractEntity<Long> {
 
 	public void setDataAberturaChamado(LocalDate dataAberturaChamado) {
 		this.dataAberturaChamado = dataAberturaChamado;
+	}
+
+	public Setor getSetor() {
+		return setor;
+	}
+
+	public void setSetor(Setor setor) {
+		this.setor = setor;
 	}
 	
 	

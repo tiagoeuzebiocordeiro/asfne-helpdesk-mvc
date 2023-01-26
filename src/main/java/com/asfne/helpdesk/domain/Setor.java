@@ -16,9 +16,12 @@ public class Setor extends AbstractEntity<Long> {
 	@Column(name = "nome", nullable = false, unique = true, length = 60)
 	private String nome;
 
-	@OneToMany(mappedBy = "setor")
+	@OneToMany(mappedBy = "setor") // OK
 	private List<Funcionario> funcionarios = new ArrayList<>();
 	
+	@OneToMany
+	private List<Chamado> chamados = new ArrayList<>();
+
 	public String getNome() {
 		return nome;
 	}

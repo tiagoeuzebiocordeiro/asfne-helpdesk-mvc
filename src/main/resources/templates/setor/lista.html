@@ -52,6 +52,13 @@
 	</div>
 	        <div class="container" id="listagem">
 	
+			<div th:if="${mensagemExcluir}">
+		     <div class="alert alert-success" role="alert" th:if="${mensagemExcluir}">
+		     	<i class="oi oi-check"></i>
+		   		<span th:text="${mensagemExcluir}"></span>
+		     </div>
+	     </div>
+	
 	            <div class="table-responsive">
 	                <table class="table table-striped table-hover table-sm">
 	                    <thead>
