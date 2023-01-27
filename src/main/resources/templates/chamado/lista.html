@@ -108,175 +108,29 @@
 	                    </tr>
 	                    </thead>
 	                    <tbody>
-	                    <tr>
-	                        <td>1</td>
-	                        <td>Reiniciar o servidor</td>
-	                        <td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
+	                    <tr th:each="c : ${chamados}">
+	                        <td th:text="${c.id}">1</td>
+	                        <td th:text="${c.titulo}">Reiniciar o servidor</td>
+	                        <td th:text="${c.funcionario.nome}">Wanderlan Vidal</td>
+	                        <td th:text="${c.setor.nome}">T.I</td>
+	                        <td th:text="${c.dataAberturaChamado}">25/01/2023</td>
 	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/1" role="button">
+	                            <a class="btn btn-info btn-sm" th:href="@{/chamados/editar/{id} (id=${c.id}) }" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
+	                            <button th:id="${ 'btn_chamados/excluir/' + c.id}" type="button" class="btn btn-danger btn-sm" 
+	                            	data-toggle="modal" data-target="#myModal"> <!--  excluindo no click do botao -->
 	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
 	                            </button>
 	                        </td>
 	                    </tr>
-	                    <tr>
-	                        <td>2</td>
-	                        <td>Trocar fita do servidor</td>
-	                        <td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/2" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>3</td>
-	                        <td>Suporte em computador</td>
-	                        <td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/3" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>4</td>
-	                        <td>Manutenção de impressora</td>
-	                        <td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/4" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>5</td>
-	                        <td>Manutenção de impressora</td>
-	                       	<td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/5" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>6</td>
-	                        <td>Suporte em computador</td>
-	                        <td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/6" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>7</td>
-	                        <td>Suporte Ramal</td>
-	                        <td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/7" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>8</td>
-	                        <td>Trocar teclado</td>
-	                        <td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/8" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>9</td>
-	                        <td>Trocar nobreak</td>
-	                        <td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/9" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>10</td>
-	                        <td>Trocar monitor</td>
-	                        <td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/10" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>11</td>
-	                        <td>Trocar mouse</td>
-	                        <td>Wanderlan Vidal</td>
-	                        <td>T.I</td>
-	                        <td>25/01/2023</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/chamados/editar/11" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
+	                
 	                    </tbody>
 	                </table>
 	            </div>
 	        </div>
+	        
+	        <div th:replace="fragments/modal :: modal"></div>
 	        
 	    </section>
 

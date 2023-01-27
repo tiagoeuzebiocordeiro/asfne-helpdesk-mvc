@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.asfne.helpdesk.domain.Setor;
@@ -55,6 +56,12 @@ public class SetorController {
 		service.excluir(id);
 		model.addAttribute("mensagemExcluir", "Setor excluido com sucesso.");
 		return listar(model);
+	}
+	
+	@GetMapping("/buscar/nome")
+	public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
+		model.addAttribute("setores", service.buscarPorNome(nome));
+		return "/setor/lista";
 	}
 	
 }

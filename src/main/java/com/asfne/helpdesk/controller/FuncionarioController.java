@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.asfne.helpdesk.domain.Funcionario;
@@ -46,6 +48,40 @@ public class FuncionarioController {
 		service.salvar(funcionario);
 		attributes.addFlashAttribute("mensagem", "Funcionário cadastrado com sucesso.");
 		return "redirect:/funcionarios/cadastrar";
+	}
+	
+	
+	@GetMapping("/editar/{id}")
+	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("funcionario", service.buscarPorId(id));
+		return "funcionario/cadastro";
+	}
+	
+	@PostMapping("/editar")
+	public String editar(Funcionario funcionario, RedirectAttributes attributes) {
+		service.editar(funcionario);
+		attributes.addFlashAttribute("mensagem", "Funcionário editado com sucesso.");
+		return "redirect:/funcionarios/cadastrar";
+		
+	}
+	
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attributes) {
+		service.excluir(id);
+		attributes.addFlashAttribute("mensagem", "Funcionário excluido com sucesso.");
+		return "redirect:/funcionarios/listar";
+	}
+	
+	@GetMapping("/buscar/nome")
+	public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
+		model.addAttribute("funcionarios", service.buscarPorNome(nome));
+		return "/funcionario/lista";
+	}
+	
+	@GetMapping("/buscar/setor")
+	public String getPorSetor(@RequestParam("id") Long id, ModelMap model) {
+		model.addAttribute("funcionarios", service.buscarPorSetor(id));
+		return "/funcionario/lista";
 	}
 	
 	// Ver os setores disponiveis  no combo box para inserção de um funcionario

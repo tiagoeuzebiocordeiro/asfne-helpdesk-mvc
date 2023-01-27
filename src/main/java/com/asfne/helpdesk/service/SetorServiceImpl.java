@@ -48,4 +48,9 @@ public class SetorServiceImpl implements SetorService {
 		return dao.findAll();
 	}
 
+	@Override
+	public List<Setor> buscarPorNome(String nome) {
+		return dao.findByNome(nome);
+		
+	}
 }

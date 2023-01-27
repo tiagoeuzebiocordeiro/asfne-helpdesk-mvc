@@ -15,5 +15,7 @@ public interface SetorDao {
 	Setor findById(Long id);
 	
 	List<Setor> findAll();
+
+	List<Setor> findByNome(String nome);
 	
 }

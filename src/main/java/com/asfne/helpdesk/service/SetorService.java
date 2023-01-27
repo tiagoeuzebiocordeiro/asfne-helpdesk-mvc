@@ -16,5 +16,7 @@ public interface SetorService {
 	Setor buscarPorId(Long id);
 	
 	List<Setor> buscarTodos();
+
+	List<Setor> buscarPorNome(String nome);
 	
 }
