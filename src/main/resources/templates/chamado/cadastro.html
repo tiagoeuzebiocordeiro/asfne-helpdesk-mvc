@@ -37,25 +37,43 @@
 	        
 	            <form th:action="${chamado.id == null} ? @{/chamados/salvar} : @{/chamados/editar}" 
 	            th:object="${chamado}" method="POST">
+	            
+	            <div th:replace="fragments/validacao :: validacao"></div> <!--  mensagem de validação! -->
+	             
+	            
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
-	                        <label for="titulo">Titulo do chamado</label>
-	                        <input type="text" class="form-control" id="titulo" placeholder="Titulo Chamado" autofocus="autofocus" th:field="*{titulo}"/>
+	                        <label for="titulo">Título do chamado</label>
+	                        <input type="text" class="form-control" id="titulo" placeholder="Titulo Chamado" autofocus="autofocus" th:field="*{titulo}"
+	                        th:classappend="${#fields.hasErrors('titulo')} ? 'is-invalid'"/>
+	                        
+	                        <div class="invalid-feedback">
+	                    
+	                    		<span th:errors="*{titulo}"></span>
+	                    
+	                    	</div>
+	                        
 	                    </div>
+	                    
+	     
+	                    
 	                    <div class="form-group col-md-4">
 	                        <label for="setor">Setor que irá receber o suporte</label>
-	                        <select id="setor" class="form-control" th:field="*{setor}">
+	                        <select id="setor" class="form-control" th:field="*{setor}"
+	                        th:classappend="${#fields.hasErrors('setor')} ? 'is-invalid'">
 	                            <option value="">Selecione</option>
 	                            <option th:each="s : ${setores}" th:value="${s.id}" th:text=${s.nome}>Teste</option>
-	                            
+	                     
 	                        </select>
+	                     
 	                    </div>
 	                    
 	                    <!--  Adicionei isso 25/01, para na hora que for cadastrar pegar a lista de funcionarios presentes -->
 	                    
 	                    <div class="form-group col-md-4">
 	                        <label for="funcionario">Aberto por</label>
-	                        <select id="funcionario" class="form-control" th:field="*{funcionario}">
+	                        <select id="funcionario" class="form-control" th:field="*{funcionario}"
+	                        th:classappend="${#fields.hasErrors('funcionario')} ? 'is-invalid'">
 	                            <option value="">Selecione...</option>
 	                            <option th:each="f : ${funcionarios}" th:value="${f.id}" th:text=${f.nome}>Teste</option>
 	                            
@@ -64,9 +82,16 @@
 	                    
 	                    <div class="form-group col-md-4"> 
 	                    <label for="data_abertura">Data de Abertura (Dia / Mês / Ano)</label>
-	                    <input type="date" class="form-control" id="dataAberturaChamado" autofocus="autofocus" th:field="*{dataAberturaChamado}"> 	                    
+	                    <input type="date" class="form-control" id="dataAberturaChamado" autofocus="autofocus" th:field="*{dataAberturaChamado}"
+	                    th:classappend="${#fields.hasErrors('dataAberturaChamado')} ? 'is-invalid'"> 	                    
 	                    <!-- Input de data acima -->
 	                    </div>
+	                    
+	                    <div class="invalid-feedback">
+	                    
+	                    		<span th:errors="*{dataAberturaChamado}"></span>
+	                    
+	                    	</div>
 	                    
 	                </div>
 	                <input type="hidden" id="id" name="id" value=""/>

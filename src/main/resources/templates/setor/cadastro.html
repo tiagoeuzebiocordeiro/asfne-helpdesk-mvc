@@ -37,12 +37,27 @@
 	        
 	            <form th:action="${setor.id == null} ? @{/setores/salvar} : @{/setores/editar}" 
 	            th:object="${setor}" method="POST">
+	            
+	            
+	            <div th:replace="fragments/validacao :: validacao"></div> <!--  mensagem de validação! -->
+	            
+	            
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="nome">Setor</label>
 	                        <input type="text" class="form-control" id="nome"
-	                               placeholder="Nome Setor" autofocus="autofocus" th:field="*{nome}"/>
+	                               placeholder="Nome Setor" autofocus="autofocus" th:field="*{nome}"
+	                               th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'"/>
+	                               
+	                        <div class="invalid-feedback">
+	                    
+	                    		<span"invalid-feedback" th:errors="*{nome}"></span>
+	                    
+	                    	</div>
+	                               
 	                    </div>
+	                    
+	                    
 	                </div>
 	                <input type="hidden" id="id" th:field="*{id}"/> <!-- automaticmanete atribuido a var setor q vem do controller -->
 	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>

@@ -2,9 +2,12 @@ package com.asfne.helpdesk.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +47,12 @@ public class FuncionarioController {
 	}*/
 	
 	@PostMapping("/salvar")
-	public String salvar(Funcionario funcionario, RedirectAttributes attributes) {
+	public String salvar(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes attributes) {
+		
+		if (result.hasErrors()) {
+			return "/funcionario/cadastro";
+		}
+		
 		service.salvar(funcionario);
 		attributes.addFlashAttribute("mensagem", "Funcionário cadastrado com sucesso.");
 		return "redirect:/funcionarios/cadastrar";
@@ -58,7 +66,12 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(Funcionario funcionario, RedirectAttributes attributes) {
+	public String editar(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes attributes) {
+		
+		if (result.hasErrors()) {
+			return "/funcionario/cadastro";
+		}
+		
 		service.editar(funcionario);
 		attributes.addFlashAttribute("mensagem", "Funcionário editado com sucesso.");
 		return "redirect:/funcionarios/cadastrar";

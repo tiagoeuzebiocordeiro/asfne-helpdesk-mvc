@@ -1,8 +1,11 @@
 package com.asfne.helpdesk.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +35,13 @@ public class SetorController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(Setor setor, RedirectAttributes redirectAttributes) {
+	public String salvar(@Valid Setor setor, BindingResult result, RedirectAttributes redirectAttributes) {
+		
+		if (result.hasErrors()) {
+			return "setor/cadastro";
+		}
+		
+		
 		service.salvar(setor);
 		redirectAttributes.addFlashAttribute("mensagem", "Setor cadastrado com sucesso.");
 		return "redirect:/setores/cadastrar";
@@ -45,7 +54,13 @@ public class SetorController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(Setor setor, RedirectAttributes redirectAttributes) {
+	public String editar(@Valid Setor setor, BindingResult result,  RedirectAttributes redirectAttributes) {
+		
+		if (result.hasErrors()) {
+			return "setor/cadastro";
+		}
+		
+		
 		service.editar(setor);
 		redirectAttributes.addFlashAttribute("mensagem", "Setor editado com sucesso.");
 		return "redirect:/setores/cadastrar";

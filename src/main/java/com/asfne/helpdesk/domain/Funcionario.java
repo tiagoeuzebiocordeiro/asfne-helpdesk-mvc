@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
@@ -21,10 +24,13 @@ public class Funcionario {
 	@Column(name = "id_funcionario")
 	private Long id;	
 	
+	@NotBlank(message = "O nome do funcionário deve ser informado.")
+	@Size(min = 3, max = 50, message = "O nome do funcionário deve ter entre {min} e {max} caracteres.")
 	private String nome;
 	
 	@OneToOne
 	@JoinColumn(name = "id_setor")
+	@NotNull(message = "O setor associado ao funcionário é obrigatório.")
 	private Setor setor; // OK
 	
 	//@OneToMany

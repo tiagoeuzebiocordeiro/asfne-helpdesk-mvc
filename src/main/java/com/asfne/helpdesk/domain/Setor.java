@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
@@ -23,6 +25,8 @@ public class Setor {
 	private Long id;	
 
 	@Column(name = "nome", nullable = false, unique = true, length = 60)
+	@NotBlank(message = "Informe um nome.")
+	@Size(min = 3, max = 60, message = "O nome do setor deve ter entre {min} e {max} caracteres.")
 	private String nome;
 
 	/*@OneToMany

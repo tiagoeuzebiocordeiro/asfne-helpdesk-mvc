@@ -1,5 +1,6 @@
 package com.asfne.helpdesk.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,21 @@ public class ChamadoServiceImpl implements ChamadoService {
 	@Transactional(readOnly = true)
 	public List<Chamado> buscarTodos() {
 		return dao.findAll();
+	}
+
+	@Override
+	public List<Chamado> buscarPorTitulo(String titulo) {
+		return dao.buscarPorTitulo(titulo);
+	}
+
+	@Override
+	public List<Chamado> buscarPorSetor(Long id) {
+		return dao.buscarPorSetor(id);
+	}
+
+	@Override
+	public List<Chamado> buscarPorData(Date data) {
+		return dao.findByData(data);
 	}
 
 }

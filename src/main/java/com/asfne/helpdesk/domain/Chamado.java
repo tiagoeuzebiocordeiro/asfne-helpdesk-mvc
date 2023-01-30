@@ -1,6 +1,6 @@
 package com.asfne.helpdesk.domain;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,18 +32,23 @@ public class Chamado {
 	private Long id;	
 	
 
+	@NotBlank(message = "O título do chamado é obrigatório.")
+	@Size(max = 60, message = "O título do chamado deve ter no máximo 60 caracteres.")
 	@Column(name = "titulo", nullable = false, unique = true, length = 60)
 	private String titulo;
 
 	@OneToOne
 	@JoinColumn(name = "id_funcionario")
+	@NotNull(message = "O funcionário responsável pela abertura do chamado deve ser informado.")
 	private Funcionario funcionario;
 	
+	@NotNull(message = "A data de abertura do chamado deve ser informada.")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataAberturaChamado;
+	private Date dataAberturaChamado;
 	
 	@OneToOne
 	@JoinColumn(name = "id_setor")
+	@NotNull(message = "O setor associado ao chamado é obrigatório.")
 	private Setor setor;
 	
 	public String getTitulo() {
@@ -59,11 +67,11 @@ public class Chamado {
 		this.funcionario = funcionario;
 	}
 
-	public LocalDate getDataAberturaChamado() {
+	public Date getDataAberturaChamado() {
 		return dataAberturaChamado;
 	}
 
-	public void setDataAberturaChamado(LocalDate dataAberturaChamado) {
+	public void setDataAberturaChamado(Date dataAberturaChamado) {
 		this.dataAberturaChamado = dataAberturaChamado;
 	}
 
