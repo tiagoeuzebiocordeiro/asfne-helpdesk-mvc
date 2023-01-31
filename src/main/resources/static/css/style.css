@@ -30,7 +30,13 @@ body {
 .container {
 	width: 100%;
 	padding-top: 20px;
+	
 }
+
+#card-baixo {
+	padding-top: 1.5em;
+}
+
 
 /*
  * Sidebar
