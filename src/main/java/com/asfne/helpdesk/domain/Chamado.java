@@ -1,5 +1,6 @@
 package com.asfne.helpdesk.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,14 +18,11 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
-
-//import com.fasterxml.jackson.annotation.JsonFormat;
-
-@SuppressWarnings("serial")
 @Entity
 @Table(name = "chamados")
-public class Chamado {
+public class Chamado implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

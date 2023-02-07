@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html layout:decorate="~{layout}">
+<html lang="pt" layout:decorate="~{layout}"
+xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8" />
 </head>
@@ -11,7 +15,7 @@
 		<nav class="navbar navbar-expand-md bg-light">
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+					<li class="nav-item active" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO)"><i class="oi oi-caret-right"></i>
 						<span>Home / Documentação</span></li>
 				</ul>
 			</div>
@@ -19,7 +23,7 @@
 
 		<div class="container">
 
-			<h3>[ASFNE Helpdesk] - Documentação</h3>
+			<h3>Para conseguir utilizar o sistema efetue o Login</h3>
 			
 
 

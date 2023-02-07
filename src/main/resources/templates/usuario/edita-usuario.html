@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<title>ASFNE Helpdesk</title>
+	
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="Helpdesk" />
+	<meta name="author" content="Agape Tecnologia" />
+	
+	<link rel="icon" th:href="@{/image/favicon.ico}" />
+	
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css(v=${version}) }" rel="stylesheet" />
+	
+	<!-- jQueryUI (autocomplete) -->
+	<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+	
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/style-home.css(v=${version}) }" rel="stylesheet" />
+	
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >	
+    	
+	<!-- Icons fontawesome -->
+	<link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" />
+		
+	<link href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet">
+	
+	<link rel="stylesheet" th:href="@{/css/tabela.css}" />
+			
+</head>
+
+<body >
+
+	<header th:replace="fragments/header :: cabecalho"></header>
+
+	<br />
+
+	<div class="container">
+
+		<!-- Main content -->
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+					
+						<div class="alert alert-info alert-dismissible fade show" th:each = "m : ${msg}">
+							<span th:text = "${m}" ></span>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>							
+						</div>
+
+						<div class="card">
+
+							<h5 class="card-header-home text-center">Cadastro de Usuários - Alteração</h5>
+						
+							<div class="card-body">
+
+								<form name="f1"  method="POST" th:action="@{/usuario/salvarusuario}" 
+									th:object="${usuario}"	onsubmit="return confirmar()" class="needs-validation" novalidate>
+
+									<div class="form-group">
+
+										<div class="card bg-light">
+
+											<div class="card-body" style="padding: 10px;" >
+												<a th:href="@{/}" class="btn btn-warning"> 
+													<i class="fa fa-backward"></i>&nbsp;&nbsp;Voltar</a> 
+												<button type="submit" class="btn btn-info">
+												    <i class="fa fa-check"></i>&nbsp;&nbsp;Gravar
+												</button>	
+											</div>
+
+										</div>
+
+									</div>
+
+									<!-- Inicio dos Campos do Cadastro -->
+									
+									<div class="form-row">
+									
+										<div class="form-group col-md-2">
+											<label for="id">Identificador</label> 
+											<input type="text" class="form-control" id="id" 
+												name="id" th:field="*{id}" readonly="readonly">
+										</div>	
+																		
+										<div class="form-group col-md-6">
+											<label for="login">E-Mail / login</label> 
+											<input type="email" class="form-control" id="login" 
+												name="login" th:field="*{login}" placeholder="E-Mail / Login" required>
+											<div class="invalid-feedback">Informe o Login</div>
+										</div>
+										
+										<div class="form-group col-md-4">
+											<label for="senha">Senha</label> 
+											<input type="password" class="form-control" id="senha" required
+												name="senha" th:field="*{senha}" placeholder="Senha">
+											<div class="invalid-feedback">Informe a Senha</div>	
+										</div>
+										
+									</div>
+									
+									<div class="form-row">
+									
+										<div class="form-group col-md-5">
+											<label for="nome">Nome do Usuário</label> 
+											<input type="text" class="form-control" id="nome" required
+												name="nome" th:field="*{nome}" placeholder="Nome do Usuário">
+											<div class="invalid-feedback">Informe o Nome</div>	
+										</div>	
+																			
+									</div>
+																									
+									<!-- Final dos Campos do Cadastro -->								
+																									
+								</form>
+
+							</div>
+							
+						</div>
+						<!-- /.card -->
+						
+						<footer th:replace="fragments/footer :: rodape"></footer>
+
+					</div>
+					<!-- /.col-md-12 -->
+					
+				</div>
+				<!-- /.row -->
+				
+			</div>
+			<!-- /.container-fluid -->
+			
+		</div>
+		<!-- /.content -->
+
+	</div>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js(v=${version}) }"></script>
+       
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+	<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.min.js'></script>	
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	
+	<!-- biblioteca para uso de máscaras -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
+	<script	th:src="@{/js/jquery.mask.js(v=${version})}"></script>
+	<script	th:src="@{/js/jquery.mask.min.js(v=${version})}"></script>
+	
+	<script>
+	
+		function confirmar(){
+			if (confirm('Deseja realmente alterar os dados?')){
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+	</script>
+	
+	<script>
+		// JavaScript inicial para desativar envios de formulário, se houver campos inválidos.
+		(function() {
+			  'use strict';
+			  window.addEventListener('load', function() {
+			    // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+			    var forms = document.getElementsByClassName('needs-validation');
+			    // Faz um loop neles e evita o envio
+			    var validation = Array.prototype.filter.call(forms, function(form) {
+			      form.addEventListener('submit', function(event) {
+			        if (form.checkValidity() === false) {
+			          event.preventDefault();
+			          event.stopPropagation();
+			        }
+			        form.classList.add('was-validated');
+			      }, false);
+			    });
+			  }, false);
+		})();
+	</script>	
+		
+	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	
+	<script>
+		$(document).ready(function(){
+		    $('#table-lista-mun, #table-lista-inst').DataTable({
+		    	dom: 'Bfrtip',
+		    	"pageLength": 5,
+		    	"searching": true,
+		    	"language": {
+		               		    		       	
+		                   "sEmptyTable": "Nenhum registro encontrado",
+		                   "sInfo": "Mostrando de _START_ à _END_ de um total de _TOTAL_ registros",
+		                   "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+		                   "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+		                   "sInfoPostFix": "",
+		                   "sInfoThousands": ".",
+		                   "sLengthMenu": "Mostrando _MENU_ resultados por página",
+		                   "sLoadingRecords": "Carregando...",
+		                   "sProcessing": "Processando...",
+		                   "sZeroRecords": "Nenhum registro encontrado",
+		                   "sSearch": "Pesquisar na Lista:",
+		                   "oPaginate": {
+		                       "sNext": "Próximo",
+		                       "sPrevious": "Anterior",
+		                       "sFirst": "Primeiro",
+		                       "sLast": "Último"
+		                   },
+		                   "oAria": {
+		                       "sSortAscending": ": Ordenar colunas de forma ascendente",
+		                       "sSortDescending": ": Ordenar colunas de forma descendente"
+		                   }
+		                   
+		        }
+		    
+		    });
+		});
+	</script> 
+		
+	<script type="text/javascript">
+		function atualizainstituicao(valor){	
+			document.getElementById('instituicao').value = valor;
+		}			
+	</script>	
+			
+</body>
+
+</html>

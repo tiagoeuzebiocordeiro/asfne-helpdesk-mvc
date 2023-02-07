@@ -20,12 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.contrachequeweb.model.Usuario;
-import com.contrachequeweb.model.UsuarioRole;
-import com.contrachequeweb.repository.InstituicaoPublicaRepository;
-import com.contrachequeweb.repository.RoleRepository;
-import com.contrachequeweb.repository.UsuarioRepository;
-import com.contrachequeweb.repository.UsuarioRoleRepository;
+import com.asfne.helpdesk.domain.Usuario;
+import com.asfne.helpdesk.domain.UsuarioRole;
+import com.asfne.helpdesk.repository.RoleRepository;
+import com.asfne.helpdesk.repository.UsuarioRepository;
+import com.asfne.helpdesk.repository.UsuarioRoleRepository;
 
 @Controller
 @RequestMapping("usuario")
@@ -196,8 +195,6 @@ public class UsuarioController {
 	@RequestMapping(method = RequestMethod.POST, value = "salvarusuario")
 	public ModelAndView salvar(@Valid Usuario usuario, BindingResult bindingResult)	throws IOException {
 
-		usuario.setCpf(usuario.getCpf().replaceAll("[^0-9]+", ""));
-			
 		if (usuario.getId() != null) {
 			Usuario usuarioAlteracao = usuarioRepository.retornaUsuarioPorId(usuario.getId());
 			usuario.setRoles(usuarioAlteracao.getRoles());
@@ -217,7 +214,6 @@ public class UsuarioController {
 			if (usuario.getId() != null) {
 				
 				ModelAndView modelAndView = new ModelAndView("usuario/edita-usuario");
-				modelAndView.addObject("instituicoes", instituicaoPublicaRepository.findAll());
 				modelAndView.addObject("usuario", usuario);
 				
 				for (ObjectError objectError : bindingResult.getAllErrors()) {
@@ -299,80 +295,6 @@ public class UsuarioController {
 
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/salvarnovousuario")
-	public ModelAndView salvarNovoUsuario(@Valid Usuario usuario, BindingResult bindingResult)	throws IOException {
-
-		usuario.setCpf(usuario.getCpf().replaceAll("[^0-9]+", ""));
-			
-		if (usuario.getId() != null) {
-			Usuario usuarioAlteracao = usuarioRepository.retornaUsuarioPorId(usuario.getId());
-			usuario.setRoles(usuarioAlteracao.getRoles());
-		}
-							
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String senha = encoder.encode(usuario.getSenha());
-		usuario.setSenha(senha);
-
-		List<String> msg = new ArrayList<String>();
-		
-		Usuario loginJaCadastrado = null;
-		
-		
-		Usuario novoUsuario = null;
-		
-		// Existindo erros
-		if (bindingResult.hasErrors()) {
-						
-			ModelAndView modelAndView = new ModelAndView("usuario/novo");
-			modelAndView.addObject("usuario", usuario);
-			
-			for (ObjectError objectError : bindingResult.getAllErrors()) {
-				msg.add(objectError.getDefaultMessage()); // vem das anotações @NotEmpty e outras
-			}				
-			
-			modelAndView.addObject("msg", msg);
-			return modelAndView;						
-
-		} else { // Não havendo erros
-								
-			loginJaCadastrado = usuarioRepository.findUserByLogin(usuario.getLogin()); 
-			
-			jaExisteCpfNaInstituicao = usuarioRepository.retornaCpfCadastradoNaInstituicao(usuario.getCpf(), usuario.getInstituicao().getId());
-			
-			if ((loginJaCadastrado == null) && (jaExisteCpfNaInstituicao.equals(0))) {
-
-				msg.add("Usuario gravado com sucesso.");
-				ModelAndView andView = new ModelAndView("usuario/novo");
-				
-				usuarioRepository.save(usuario);
-				
-				// Grava a permissão de servidor para o novo usuario
-				novoUsuario = usuarioRepository.retornaUsuarioPorLoginCpfInstituicao(usuario.getLogin(), usuario.getCpf(), usuario.getInstituicao().getId());
-				UsuarioRole userRole = new UsuarioRole();
-				userRole.setUsuario(novoUsuario);
-				userRole.setRole(roleRepository.retornaRolePorNome("ROLE_SERVIDOR"));
-				usuarioRoleRepository.save(userRole);
-				
-				andView.addObject("msg", msg);
-				andView.addObject("usuario", new Usuario());	
-				return andView;
-				
-			} else {
-				
-				if (loginJaCadastrado != null) {
-					msg.add("Já existe um usuário com este login.");
-				}
-				
-				ModelAndView andView = new ModelAndView("usuario/novo");
-				
-				andView.addObject("usuario", usuario);							
-				andView.addObject("msg", msg);
-				return andView;							
-				
-			}
-									
-		}			
-
-	}	
+	
     
 }

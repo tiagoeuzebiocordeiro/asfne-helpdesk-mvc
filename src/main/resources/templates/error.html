@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<title>ContraChequeWeb</title>
+	
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="Atendimento médico-hospilar on-line" />
+	<meta name="author" content="Agape Tecnologia" />
+	
+	<link rel="icon" th:href="@{image/favicon.ico}" />
+	
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css(v=${version}) }" rel="stylesheet" />
+	
+	<!-- jQueryUI (autocomplete) -->
+	<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+	
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/style-home.css(v=${version}) }" rel="stylesheet" />
+	
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >	
+    	
+	<!-- Icons fontawesome -->
+	<link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" />
+		
+</head>
+
+<body >
+    
+    <br />
+
+	<div class="container">
+
+		<!-- Main content -->
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<div class="card bg-light border-light">
+
+							<h5 class="card-header-home text-center">Operação não permitida</h5>
+
+							<div class="card-body text-center">
+
+								<h1 style="color: #0000FF;">
+									<i class="fa fa-exclamation-triangle"></i>
+								</h1>
+								
+								<h1>
+									<span th:text="${status}"></span>
+								</h1>
+
+								<h2 th:text="${error}" style="color: #FF0000;"></h2>
+
+								<div>
+									<span th:text="${message}"></span>
+									<br />									
+								</div>
+								
+							</div>
+
+							<div class="card-footer text-center">
+								<a class="btn btn-info" type="button"
+									href="javascript:history.back()">Voltar a página anterior</a>
+							</div>
+
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+	<script th:src="@{/webjars/jquery/jquery.min.js(v=${version}) }"></script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.min.js'></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+	<!-- biblioteca para uso de máscaras -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
+	<script th:src="@{/js/jquery.mask.js(v=${version})}"></script>
+	<script th:src="@{/js/jquery.mask.min.js(v=${version})}"></script>
+		
+</body>
+
+</html>

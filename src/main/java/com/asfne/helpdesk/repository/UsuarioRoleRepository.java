@@ -1,4 +1,4 @@
-package com.contrachequeweb.repository;
+package com.asfne.helpdesk.repository;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.contrachequeweb.model.UsuarioRole;
+import com.asfne.helpdesk.domain.UsuarioRole;
 
 @Transactional
 @Repository

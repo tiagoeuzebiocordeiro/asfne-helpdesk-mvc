@@ -1,16 +1,71 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"></head>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+</head>
 <body>
 	<header th:fragment="cabecalho">
-		<nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
-			<div class="container-fluid">
+		<nav
+			class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
+			<div class="row container-fluid">
+				<!--  row -->
 				<div class="navbar-header">
+
 					<button type="button" class="btn btn-dark navbar-toggle pull-left">
 						<i class="oi oi-menu"></i>
 					</button>
-					<a class="navbar-brand " href="#">Helpdesk</a>
+					<a class="navbar-brand " sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')" href="#">Helpdesk</a>
+
 				</div>
+				<div class="col-sm mt-0 mb-1">
+
+					<form class="form-inline mt-2 mt-md-0"
+						sec:authorize="!isAuthenticated()">
+						<div class="form-check mb-0 mr-sm-2">
+							<a class="btn btn-success my-2 my-sm-0" role="button"
+								th:href="@{/login}" >Login</a>
+
+							
+						</div>
+
+					</form>
+
+
+				</div>
+				
+				<form th:action="@{/logout}" sec:authorize="isAuthenticated()"
+			  method="post">
+			  
+			 <div class="btn-group">
+				<button type="button" class="btn btn-light" style="background-color: white !important;">
+					<i class="fas fa-user"></i> <span class=""
+						sec:authentication="name">Admin</span>
+				</button>
+				<button type="button"
+					class="btn btn-light dropdown-toggle dropdown-toggle-split"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				</button>
+				<div class="dropdown-menu">
+					<button type="submit" class="dropdown-item">Sair</button>
+				</div>
+			</div>
+			  
+			  </form>
+
+		<form class="form-inline mt-2 mt-md-0 ml-2"
+						sec:authorize="!isAuthenticated()">
+						<div class="form-check mb-0 mr-sm-2">
+							<a class="btn btn-secondary my-2 my-sm-0" role="button"
+								th:href="@{/usuario/usuarios}" sec:authorize="hasAnyRole('ROLE_ADMIN')">Usuários</a>
+
+							
+						</div>
+
+					</form>
+
 			</div>
 		</nav>
 	</header>

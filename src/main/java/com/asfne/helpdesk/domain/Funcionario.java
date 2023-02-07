@@ -1,5 +1,6 @@
 package com.asfne.helpdesk.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -14,10 +15,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name = "funcionarios")
-public class Funcionario {
+public class Funcionario implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +35,6 @@ public class Funcionario {
 	@NotNull(message = "O setor associado ao funcionário é obrigatório.")
 	private Setor setor; // OK
 	
-	//@OneToMany
-	//private List<Chamado> chamados = new ArrayList<>();
-
 	public String getNome() {
 		return nome;
 	}
@@ -43,15 +42,6 @@ public class Funcionario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-
-	/*public List<Chamado> getChamados() {
-		return chamados;
-	}
-
-	public void setChamados(List<Chamado> chamados) {
-		this.chamados = chamados;
-	}*/
 
 	public Setor getSetor() {
 		return setor;

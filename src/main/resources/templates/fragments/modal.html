@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt"
+xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head><meta charset="UTF-8"/></head>
 <body>
 	<!--CONFIRM MODAL-->
@@ -7,15 +11,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')"></button>
                     <h4 class="modal-title">Atenção!</h4>
                 </div>
                 <div class="modal-body">
                     <p>Deseja realmente excluir? Clique em SIM para EXCLUIR.&hellip;</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button id="ok_confirm" type="button" class="btn btn-primary">Excluir</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')">Cancelar</button>
+                    <button id="ok_confirm" type="button" class="btn btn-primary" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')">Excluir</button>
                 </div>
             </div>    <!-- /.modal-content -->
         </div>  <!-- /.modal-dialog -->

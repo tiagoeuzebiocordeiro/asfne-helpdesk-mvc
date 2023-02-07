@@ -1,0 +1,49 @@
+/*
+	Arquivo criado para subscrever as classe de CSS da 
+	paginação da Datatable do https://datatables.net
+*/
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+			  color: #000000 !important;
+			  border: 1px solid #fabe19;
+			  background-color: #fde5a5;
+			  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fde5a5), color-stop(100%, #fabe19));
+			  /* Chrome,Safari4+ */
+			  background: -webkit-linear-gradient(top, #fde5a5 0%, #fabe19 100%);
+			  /* Chrome10+,Safari5.1+ */
+			  background: -moz-linear-gradient(top, #fde5a5 0%, #fabe19 100%);
+			  /* FF3.6+ */
+			  background: -ms-linear-gradient(top, #fde5a5 0%, #fabe19 100%);
+			  /* IE10+ */
+			  background: -o-linear-gradient(top, #fde5a5 0%, #fabe19 100%);
+			  /* Opera 11.10+ */
+			  background: linear-gradient(to bottom, #fde5a5 0%, #fabe19 100%);
+			  /* W3C */
+}
+
+table.dataTable thead th, table.dataTable thead td, table.dataTable thead tr {
+  /*padding: 10px 18px;*/
+  border-bottom: 0.5px solid #c0c0c0;  
+}
+
+table.dataTable.no-footer {
+  border-top: 0.5px solid #c0c0c0;	
+  border-bottom: 0.5px solid #c0c0c0;
+}
+
+table.table-striped {
+	background-color: #fffff9; /* Cor da linha na tabela */
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: #333 !important;
+  border: 1px solid #e2e2e2;
+  background-color: white;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #dcdcdc));
+  background: -webkit-linear-gradient(top, white 0%, #dcdcdc 100%);
+  background: -moz-linear-gradient(top, white 0%, #dcdcdc 100%);
+  background: -ms-linear-gradient(top, white 0%, #dcdcdc 100%);
+  background: -o-linear-gradient(top, white 0%, #dcdcdc 100%);
+  background: linear-gradient(to bottom, white 0%, #dcdcdc 100%);
+}
+
