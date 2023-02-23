@@ -43,6 +43,16 @@
 
 	<br />
 
+	<br>
+	<br>
+	<div class="alert alert-info alert-dismissible fade show"
+		th:each="m : ${msg}">
+		<span th:text="${m}"></span>
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
 	<div class="container">
 
 		<!-- Main content -->
@@ -50,60 +60,61 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-					
-						<div class="alert alert-success alert-dismissible fade show" th:each = "m : ${msg}">
-							<span th:text = "${m}" ></span>
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>							
-						</div>					
+
+
 
 						<div class="card">
-							
-							<h5 class="card-header-home text-center">Listagem de Usuários</h5>
-							
+							<br>
+							<h5 class="card-header-home text-center">Listagem de
+								Usuários</h5>
+
 							<div class="card-body">
+
+
 
 								<div class="form-group">
 									<div class="card bg-light">
 
-										<div class="card-body" style="padding: 10px;" >
-											<a th:href="@{/usuario/cadastrarusuario}" class="btn btn-success float-right">
-												<i class="fa fa-plus"></i>&nbsp;&nbsp;Novo</a>
-											<a th:href="@{/}" class="btn btn-warning ">
-												<i class="fa fa-backward"></i>&nbsp;&nbsp;Voltar</a>
+										<div class="card-body" style="padding: 10px;">
+											<a th:href="@{/usuario/cadastrarusuario}"
+												class="btn btn-success float-right"> <i
+												class="fa fa-plus"></i>&nbsp;&nbsp;Novo
+											</a> <a th:href="@{/home}" class="btn btn-warning "> <i
+												class="fa fa-backward"></i>&nbsp;&nbsp;Voltar
+											</a>
 										</div>
-										
+
 									</div>
 								</div>
-								
-								<form name="frmPesquisa" id="frmPesquisa" th:action="@{/usuario/consultausuarios}" method="GET">
-								
+
+								<form name="frmPesquisa" id="frmPesquisa"
+									th:action="@{/usuario/consultausuarios}" method="GET">
+
 									<div class="form-group">
 										<label>Informe o nome para busca</label>
 										<div class="input-group">
-											<input name="nomepesquisa" type="text" class="form-control" 
-												placeholder="Digite aqui o que deseja buscar"> 
-												<span class="input-group-btn">												
-													<button type="submit" class="btn btn-info">
-													    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar
-													</button>																									
-												</span>
+											<input name="nomepesquisa" type="text" class="form-control"
+												placeholder="Digite aqui o que deseja buscar"> <span
+												class="input-group-btn">
+												<button type="submit" class="btn btn-info">
+													<i class="fa fa-search"></i>&nbsp;&nbsp;Buscar
+												</button>
+											</span>
 										</div>
 									</div>
-									
+
 								</form>
-																								
+
 								<form id="frmLista">
-								
+
 									<div class="table-responsive">
 										<table id="table-usuarios"
 											class="table compact table-striped order-column hover"
 											style="width: 100%">
 											<thead class="table-secondary">
 												<tr>
-													<th>#</th>													
-													<th>Nome</th>													
+													<th>#</th>
+													<th>Nome</th>
 													<th>Login</th>
 													<th>Ações</th>
 												</tr>
@@ -113,45 +124,48 @@
 													<td th:text="${user.id}"></td>
 													<td th:text="${user.nome}"></td>
 													<td th:text="${user.login}"></td>
-													
-													<td>
-														<a th:href="@{/usuario/editarusuario/{id}(id=${user.id})}"
-															class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
-														<a th:href="@{/usuario/config-acessos/{id}(id=${user.id})}"
-															sec:authorize="hasAnyRole('ROLE_ADMIN')"
-															class="btn btn-sm btn-success"><i class="fa fa-key"></i></a>
-														<a th:href="@{/usuario/removerusuario/{id}(id=${user.id})}" onclick="return confirmar()" 
-															sec:authorize="hasAnyRole('ROLE_ADMIN')"
-															class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;Excluir</a>															
+
+													<td><a
+														th:href="@{/usuario/editarusuario/{id}(id=${user.id})}"
+														class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+														<a
+														th:href="@{/usuario/config-acessos/{id}(id=${user.id})}"
+														sec:authorize="hasAnyRole('ROLE_ADMIN')"
+														class="btn btn-sm btn-success"><i class="fa fa-key"></i></a>
+														<a
+														th:href="@{/usuario/removerusuario/{id}(id=${user.id})}"
+														onclick="return confirmar()"
+														sec:authorize="hasAnyRole('ROLE_ADMIN')"
+														class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;Excluir</a>
 													</td>
 												</tr>
 											</tbody>
-										</table>									
-									</div>									
-									
+										</table>
+									</div>
+
 								</form>
 
 							</div>
 						</div>
 						<!-- /.card -->
-						
+
 						<footer th:replace="fragments/footer :: rodape"></footer>
 
 					</div>
 					<!-- /.col-md-12 -->
-					
+
 				</div>
 				<!-- /.row -->
-				
+
 			</div>
 			<!-- /.container-fluid -->
-			
+
 		</div>
 		<!-- /.content -->
 
 	</div>
-    
-    <script th:src="@{/webjars/jquery/jquery.min.js(v=${version}) }"></script>
+
+	<script th:src="@{/webjars/jquery/jquery.min.js(v=${version}) }"></script>
        
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>

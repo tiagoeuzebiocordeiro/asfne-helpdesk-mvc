@@ -41,7 +41,14 @@
 	<header th:replace="fragments/header :: cabecalho"></header>
 		    
 	<br />
-
+	<br>
+	<br>
+	<div class="alert alert-info alert-dismissible fade show" th:each = "m : ${msg}">
+							<span th:text = "${m}" ></span>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>							
+						</div>
 	<div class="container">
 
 		<!-- Main content -->
@@ -50,15 +57,10 @@
 				<div class="row">
 					<div class="col-lg-12">
 					
-						<div class="alert alert-info alert-dismissible fade show" th:each = "m : ${msg}">
-							<span th:text = "${m}" ></span>
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>							
-						</div>
+						
 
 						<div class="card">
-							
+							<br>
 							<h5 class="card-header-home text-center">Permissões do Usuário</h5>
 						
 							<div class="card-body">

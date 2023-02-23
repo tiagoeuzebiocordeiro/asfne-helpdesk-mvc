@@ -14,15 +14,16 @@ xmlns="http://www.w3.org/1999/xhtml"
 		<nav class="navbar navbar-expand-md bg-light">
 			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO)"><i class="oi oi-caret-right"></i>
-						<span>Home / Documentação</span></li>
+					<li class="nav-item active" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_FUNCIONARIO')"><i class="oi oi-caret-right"></i>
+						<span>Home</span></li>
 				</ul>
 			</div>
 		</nav>
 
 		<div class="container">
 
-			<h3>Para conseguir utilizar o sistema efetue o Login</h3>
+			<h3 sec:authorize="isAuthenticated()">Home Page</h3>
+			<h3 sec:authorize="!isAuthenticated()">Para utilizar o sistema, efetue o Login clicando no botão verde acima</h3>
 <!--			<h3><span th:text = "${usuario}" ></span>	</h3>	-->
 			
 			
