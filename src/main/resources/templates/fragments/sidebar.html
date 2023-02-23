@@ -4,14 +4,14 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head><meta charset="UTF-8"></head>
 <body>
-			<nav class="sidebar sidebar-open" th:fragment="nav-sidebar">
-				<ul class="nav nav-pills">
+			<nav class="sidebar sidebar-open" th:fragment="nav-sidebar"  >
+				<ul class="nav nav-pills" style="background: linear-gradient(#ffffff, #FFFFFF, #DCDCDC); box-shadow: -10px 2px 100px 20px #9FADBCA1;">
 					<li class="nav-item"><a class="nav-link " href="/home"> <i
 							class="oi oi-home"></i> <span>Home</span>
 					</a></li>
 				</ul>
 
-				<ul class="nav nav-pills">
+				<ul class="nav nav-pills" style="background: linear-gradient(#ffffff, #FFFFFF, #DCDCDC); box-shadow: -10px 2px 100px 20px #9FADBCA1;">
 					<li class="nav-item"><span class="nav-link active" >Setores</span></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/setores/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar</span>
@@ -22,7 +22,7 @@
 					</a></li>
 				</ul>
 
-				<ul class="nav nav-pills">
+				<ul class="nav nav-pills" style="background: linear-gradient(#ffffff, #FFFFFF, #DCDCDC); box-shadow: -10px 2px 100px 20px #9FADBCA1;">
 					<li class="nav-item"><span class="nav-link active" >Funcionários</span></li>
 					<li class="nav-item"><a class="nav-link" 
 						href="/funcionarios/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar </span>
@@ -33,14 +33,15 @@
 					</a></li>
 				</ul>
 
-				<ul class="nav nav-pills">
+				<ul class="nav nav-pills" style="background: linear-gradient(#ffffff, #FFFFFF, #DCDCDC); box-shadow: -10px 2px 100px 20px #9FADBCA1;">
 					<li class="nav-item"><span class="nav-link active">Chamados</span></li>
 					<li class="nav-item"><a class="nav-link" 
 						href="/chamados/cadastrar"> <i class="oi oi-plus"></i> <span>Cadastrar </span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" 
 						href="/chamados/listar"> <i class="oi oi-spreadsheet"></i> <span>Listar </span>
-					</a></li>
+					</a></li>			
+					
 				</ul>
 			</nav>
 </body>

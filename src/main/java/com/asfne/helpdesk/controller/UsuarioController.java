@@ -39,6 +39,11 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRoleRepository usuarioRoleRepository;
 	
+	@RequestMapping("/teste")
+	public String home() {
+		return "index";	
+	}		
+
 	@RequestMapping("/cadastrarusuario")
 	public ModelAndView cadastrar() {
 		
